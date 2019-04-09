@@ -1,0 +1,30 @@
+{
+  "name": "upload_resized",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:chenasraf/upload_resized.git",
+  "author": "Chen Asraf <chenasraf@users.noreply.github.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "chrome": "^0.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "styled-components": "^4.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "chrome-url-loader": "^1.1.1",
+    "copy-webpack-plugin": "^5.0.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "scripts": {
+    "start": "webpack --mode development --watch",
+    "build": "webpack --mode production"
+  }
+}
