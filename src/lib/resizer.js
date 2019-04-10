@@ -32,4 +32,17 @@ export class Size {
       this.height = height
     }
   }
+
+  resize(ratio) {
+    if (ratio === undefined) {
+      return new Size(this.width, this.height)
+    }
+    if (typeof ratio === 'number') {
+      return new Size(this.width * ratio, this.height * ratio)
+    }
+    if (ratio instanceof Size) {
+      return ratio
+    }
+    throw new Error('bad ratio value')
+  }
 }

@@ -6,12 +6,18 @@ import UploadResizer from './components/upload_resizer'
 
 const __EL_ID = '__upload_resizer_box'
 
-function bootstrap(imgSrc) {
+function bootstrap(imgSrc, ratio) {
   removeExistingBootstrap()
   const el = document.createElement('div')
   el.id = __EL_ID
   document.body.appendChild(el)
-  ReactDOM.render(<UploadResizer image={imgSrc} />, el)
+  const mainComponent = (
+    <UploadResizer
+      image={imgSrc}
+      ratio={ratio}
+      onClose={() => removeExistingBootstrap()} />
+  )
+  ReactDOM.render(mainComponent, el)
 }
 
 function removeExistingBootstrap() {
@@ -24,7 +30,7 @@ function removeExistingBootstrap() {
 chrome.runtime.onMessage.addListener((message, sender, respond) => {
   console.log('got msg', message, sender)
   if (message && message.action === 'select_image') {
-    bootstrap(message.payload.src)
+    bootstrap(message.payload.src, message.payload.ratio)
   }
   return true
 })

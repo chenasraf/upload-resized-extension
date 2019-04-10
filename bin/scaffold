@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+
+const SimpleScaffold = require('simple-scaffold').default
+const path = require('path')
+
+const args = process.argv.slice(2)
+
+function pascalCase(str) {
+  str = String(str)
+  return str[0].toUpperCase() + str.slice(1).replace(/_([a-z])/gi, (_, letter) => letter.toUpperCase())
+}
+
+const [type, name] = args
+const outputMap = {
+  component: path.join('src', 'components')
+}
+
+new SimpleScaffold({
+  name,
+  templates: [path.join(process.cwd(), 'templates', type, '**', '*')],
+  output: path.join(process.cwd(), outputMap[type] || ''),
+  locals: {
+    clsName: pascalCase(name)
+  },
+  createSubfolder: false,
+}).run()
